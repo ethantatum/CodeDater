@@ -17,7 +17,27 @@ module.exports = function(app) {
     // When user submits answer data, it is compared to the profilesArray to determine a match
 
     app.post('api/friends', function(req, res) {
-        
+        let userRes = req.body;
+        let userScores = userRes.scores;
+        let matchName = '';
+        let matchPic = '';
+        let initialVal = 10000;
+        // We need to loop over all the objects in friendsData and compare each score 1 at a time to our userScores
+        for(let i = 0; i < friendsData.length; i++) {
+            let difference = 0;
+            for(let j = 0; j < userScores.length; j++) {
+                difference += Math.abs((friendsData[i].scores[j]) - (userScores[j]));
+            }
+            if(difference < initialVal) {
+                matchName = friendsData[i].name
+                console.log(matchName);
+                matchPic = friendsData[i].photo
+                console.log(matchPic);
+            }
+            
+        }
     });
+
+    
 
 }
