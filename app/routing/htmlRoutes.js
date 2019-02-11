@@ -1,6 +1,6 @@
 // Dependencies
 
-//const path = require('path');
+const path = require('path');
 
 // Routing
 // Directs users to different pages based on what the URI is

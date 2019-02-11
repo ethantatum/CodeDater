@@ -16,7 +16,7 @@ module.exports = function(app) {
     // API 'Post' request
     // When user submits answer data, it is compared to the profilesArray to determine a match
 
-    app.post('api/friends', function(req, res) {
+    app.post('/api/friends', function(req, res) {
         let userRes = req.body;
         let userScores = userRes.scores;
         let matchName = '';
@@ -36,8 +36,7 @@ module.exports = function(app) {
             }
             
         }
-    });
 
-    
+    });
 
 }

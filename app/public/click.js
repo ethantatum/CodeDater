@@ -1,4 +1,4 @@
-$(document).ready(function() {
+//$(document).ready(function() {
     $('#submitSurvey').on(`click`, function(event) {
         event.preventDefault();
 
@@ -22,8 +22,8 @@ $(document).ready(function() {
         console.log(JSON.stringify(userResponse));
 
         $.post('/api/friends', userResponse)
-        .then(function(data) {
-            console.log(data);
+        .then(function(res) {
+            console.log(res);
         });
 
 
@@ -35,4 +35,4 @@ $(document).ready(function() {
 
 
 
-}); // End of document ready function
+//}); // End of document ready function
