@@ -1,3 +1,5 @@
+let path = require(`path`);
+
 //$(document).ready(function() {
     $('#submitSurvey').on(`click`, function(event) {
         event.preventDefault();
@@ -22,8 +24,9 @@
         console.log(JSON.stringify(userResponse));
 
         $.post('/api/friends', userResponse)
-        .then(function(res) {
-            console.log(res);
+        .then(function(data) {
+            $(`#matchName`).text(data.matchName);
+            $(`#matchPic`).html(data.matchPic);
         });
 
 

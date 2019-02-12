@@ -2,6 +2,7 @@
 // Links to our friends.js file to grab profile array
 
 const friendsData = require('../data/friends');
+let path = require('path');
 
 // Routing
 
@@ -17,10 +18,13 @@ module.exports = function(app) {
     // When user submits answer data, it is compared to the profilesArray to determine a match
 
     app.post('/api/friends', function(req, res) {
+        console.log(`This is working`);
         let userRes = req.body;
         let userScores = userRes.scores;
-        let matchName = '';
-        let matchPic = '';
+        let matchObj = {
+            matchName: '',
+            matchPic: ''
+        };
         let currentVal = 10000;
         // We need to loop over all the objects in friendsData and compare each score 1 at a time to our userScores
         for(let i = 0; i < friendsData.length; i++) {
@@ -30,14 +34,14 @@ module.exports = function(app) {
             }
             if(difference < currentVal) {
                 currentVal = difference;
-                matchName = friendsData[i].name;
-                console.log(matchName);
-                matchPic = friendsData[i].photo;
-                console.log(matchPic);
+                matchObj.matchName = friendsData[i].name;
+                matchObj.matchPic = friendsData[i].photo;
             }
             
         }
-
+        console.log(matchObj.matchName);
+        console.log(matchObj.matchPic);
+        res.json(matchObj);
         
     });
 
