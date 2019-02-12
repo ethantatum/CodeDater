@@ -6,7 +6,7 @@
 const profilesArray = [
     {
         name: 'Dorian',
-        photo: '/images/pexels-ma.jpeg',
+        photo: './images/pexels-ma.jpeg',
         scores: [
             4,
             2,

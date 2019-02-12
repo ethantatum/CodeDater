@@ -14,16 +14,13 @@
 
 <body>
     <div class="container">
-        <div class="row">
+        <div class="row bg-secondary p-2 mb-2" >
             <h1>Survey Questions</h1>
-            <h3>Answer each as honestly as possible to find the one who won't throw you for a for-loop</h3>
+            <h3 class="text-white">Answer each honestly to find the one who won't throw you for a for-loop...</h3>
             <hr>
-            <br>
-            <br>
-            <h2>About You</h2>
         </div>
         <div class="row">
-            <h5>Name (Required)</h5>
+            <h5>Name</h5>
             <input type="text" id="name" class="form-control" required>
             <h5>Link to photo</h5>
             <input type="text" id="photo" class="form-control" required>
@@ -79,7 +76,7 @@
         </div>
         <div class="form-group">
             <h3><strong>Statement Five</strong></h3>
-            <h4>28. You get bored if you have to read theoretical books.</h4>
+            <h4>You get bored if you have to read theoretical books.</h4>
             <select id="q5">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (That's never me!)</option>
@@ -157,18 +154,18 @@
         <div class="modal fade" id="specificModal" tabindex="-1" role="dialog" aria-labelledby="specificModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
-                    <h3 class="modal-title" id="specificModalLabel">Your dream match is:</h3>
+                <div class="modal-header bg-danger text-white">
+                    <h3 class="modal-title far fa-heart" id="specificModalLabel"> Your Dream Match Is!</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="matchName"></div>
-                    <div id="matchPic"></div>
+                    <h4 class='text-center' id="matchName"></h4>
+                    <img class='img-fluid' id="matchPic">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">To Happily Ever After</button>
                 </div>
                 </div>
             </div>
@@ -208,13 +205,17 @@
                     parseInt($(`#q10`).val())
                 ]
             }
-
+            let scoreArr = userResponse.scores;
+            if(scoreArr.includes(NaN)){
+                alert(`Oops, like you didn't answer all the dropdowns - please check them all and then submit!`);
+                return;
+            }
             console.log(JSON.stringify(userResponse));
 
             $.post('/api/friends', userResponse)
             .then(function(data) {
             $(`#matchName`).text(data.matchName);
-            $(`#matchPic`).html(data.matchPic);
+            $(`#matchPic`).attr('src', data.matchPic);
 
             $(`#specificModal`).modal(`toggle`);
             });

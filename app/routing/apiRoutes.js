@@ -18,7 +18,6 @@ module.exports = function(app) {
     // When user submits answer data, it is compared to the profilesArray to determine a match
 
     app.post('/api/friends', function(req, res) {
-        console.log(`This is working`);
         let userRes = req.body;
         let userScores = userRes.scores;
         let matchObj = {
@@ -39,8 +38,7 @@ module.exports = function(app) {
             }
             
         }
-        console.log(matchObj.matchName);
-        console.log(matchObj.matchPic);
+        console.log(`User was matched with ${matchObj.matchName}`);
         res.json(matchObj);
         
     });
