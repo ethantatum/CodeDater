@@ -21,22 +21,24 @@ module.exports = function(app) {
         let userScores = userRes.scores;
         let matchName = '';
         let matchPic = '';
-        let initialVal = 10000;
+        let currentVal = 10000;
         // We need to loop over all the objects in friendsData and compare each score 1 at a time to our userScores
         for(let i = 0; i < friendsData.length; i++) {
             let difference = 0;
             for(let j = 0; j < userScores.length; j++) {
                 difference += Math.abs((friendsData[i].scores[j]) - (userScores[j]));
             }
-            if(difference < initialVal) {
-                matchName = friendsData[i].name
+            if(difference < currentVal) {
+                currentVal = difference;
+                matchName = friendsData[i].name;
                 console.log(matchName);
-                matchPic = friendsData[i].photo
+                matchPic = friendsData[i].photo;
                 console.log(matchPic);
             }
             
         }
 
+        
     });
 
 }

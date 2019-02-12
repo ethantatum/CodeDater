@@ -1,6 +1,8 @@
 // DATA
 // Holds array of objects detailing individual dating profiles
 
+// DO I NEED EXPRESS.STATIC PATHS FOR MY IMAGES?
+
 const profilesArray = [
     {
         name: 'Dorian',
